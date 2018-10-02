@@ -56,7 +56,6 @@ export class AppComponent {
     if (this.signIn_Form.invalid) {
       return;
     } else {
-      console.log(this.signIn_Form.value)
       this.appService.signIn_request({
         'email': this.signIn_Form.value.signin_email,
         'password': this.signIn_Form.value.signin_password
@@ -77,7 +76,6 @@ export class AppComponent {
     } else if (!this.password_match) {
       return;
     } else {
-      console.log(this.signUp_Form.value)
       this.appService.signUp_request({
         'email': this.signUp_Form.value.signup_email,
         'password': this.signUp_Form.value.signup_confirm_password,
