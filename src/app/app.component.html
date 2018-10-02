@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <h1 class="text-primary text-center">Simple SignIn/ SignUp App</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <h2 class="text-secondary text-center">Sign In</h2>
+      <form [formGroup]="signIn_Form" (ngSubmit)="signInFunction()">
+
+        <div class="form-group">
+          <label for="signin_email">Email Address:</label>
+          <input type="email" name="signin_email" id="signin_email" class="form-control" formControlName="signin_email"
+            [ngClass]="{ 'is-invalid': signIn_Submitted && signIn.signin_email.errors }">
+          <div *ngIf="signIn_Submitted && signIn.signin_email.errors" class="invalid-feedback">
+            <div *ngIf="signIn.signin_email.errors.required">Email is required</div>
+            <div *ngIf="signIn.signin_email.errors.email">Enter a valid email address</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="signin_password">Password:</label>
+          <input type="password" name="signin_password" id="signin_password" class="form-control" formControlName="signin_password"
+            [ngClass]="{ 'is-invalid': signIn_Submitted && signIn.signin_password.errors }">
+          <div *ngIf="signIn_Submitted && signIn.signin_password.errors" class="invalid-feedback">
+            <div *ngIf="signIn.signin_password.errors.required">Password is Required</div>
+            <div *ngIf="signIn.signin_password.errors.minlength">Password must be 8 Characters or More</div>
+          </div>
+        </div>
+
+        <input type="submit" class="btn btn-success">
+
+      </form>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <h2 class="text-secondary text-center">Sign Up</h2>
+      <form [formGroup]="signUp_Form" (ngSubmit)="signUpFunction()">
+
+        <div class="form-group">
+          <label for="signup_email"> Email Address:</label>
+          <input type="email" name="signup_email" id="signup_email" class="form-control" formControlName="signup_email"
+            [ngClass]="{ 'is-invalid' : signUp_Submitted && signUp.signup_email.errors }">
+          <div *ngIf="signUp_Submitted && signUp.signup_email.errors" class="invalid-feedback">
+            <div *ngIf="signUp.signup_email.errors.required">Email is Required</div>
+            <div *ngIf="signUp.signup_email.errors.email">Enter a valid Email Address</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="signup_password">Password:</label>
+          <input type="password" name="signup_password" id="signup_password" class="form-control" formControlName="signup_password"
+            [ngClass]="{ 'is-invalid' : signUp_Submitted && signUp.signup_password.errors }">
+          <div *ngIf="signUp_Submitted && signUp.signup_password.errors" class="invalid-feedback">
+            <div *ngIf="signUp.signup_password.errors.required">Password is Required</div>
+            <div *ngIf="signUp.signup_password.errors.minlength">Password must be 8 Characters or more</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="signup_confirm_password">Confirm Password:</label>
+          <input type="password" name="signup_confirm_password" id="signup_confirm_password" class="form-control" [(ngModel)]='pass' (ngModelChange)="onEventFired(pass)"
+            formControlName="signup_confirm_password" [ngClass]="{ 'is-invalid' : signUp_Submitted && !password_match }">
+          <div *ngIf="signUp_Submitted && !password_match" class="invalid-feedback">
+            <div *ngIf="!password_match">Passwords Mismatch</div>
+          </div>
+        </div>
+
+        <input type="submit" class="btn btn-primary">
+
+      </form>
+    </div>
+  </div>
+</div>
